@@ -17,4 +17,4 @@ const RootLayout = () => (
   </>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+export const Route = createRootRoute({ component: RootLayout, errorComponent: () => <p>Error</p> });

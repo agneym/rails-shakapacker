@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "home#index"
+
+  # Catch-all route for React client-side routing
+  get "*path", to: "home#index", constraints: ->(req) { req.format.html? }
 end

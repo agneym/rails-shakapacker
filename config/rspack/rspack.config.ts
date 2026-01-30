@@ -1,5 +1,5 @@
-import rspack from "@rspack/core";
 import { RspackManifestPlugin, type FileDescriptor, type Manifest } from "rspack-manifest-plugin";
+import rspack from "@rspack/core";
 import type { Compilation } from "@rspack/core";
 import { readdirSync } from "node:fs";
 import { join, resolve, basename, extname } from "node:path";
@@ -70,6 +70,9 @@ const getModulePaths = () => {
 };
 
 const hash = env.isProduction || shakapackerConfig.useContentHash ? "-[contenthash]" : "";
+const devServerPort = shakapackerConfig.dev_server?.port ?? 3035;
+const devServerHost = shakapackerConfig.dev_server?.host ?? "localhost";
+const devServerUrl = `http://${devServerHost === "0.0.0.0" ? "localhost" : devServerHost}:${devServerPort}`;
 
 module.exports = {
   mode: isDevelopment ? "development" : "production",
@@ -81,6 +84,29 @@ module.exports = {
     hotUpdateChunkFilename: "js/[id].[fullhash].hot-update.js",
     path: shakapackerConfig.outputPath,
     publicPath: shakapackerConfig.publicPath,
+  },
+  devServer: {
+    port: devServerPort,
+    host: devServerHost,
+    allowedHosts: "all",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+    devMiddleware: {
+      publicPath: shakapackerConfig.publicPath,
+    },
+    hot: true,
+    client: {
+      overlay: false,
+    },
+    historyApiFallback: { disableDotRule: true },
+    static: {
+      publicPath: shakapackerConfig.outputPath,
+      watch: false,
+    },
+  },
+  watchOptions: {
+    ignored: "**/node_modules/**",
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -134,6 +160,7 @@ module.exports = {
       quoteStyle: "double",
     }),
   ],
+  lazyCompilation: false,
   experiments: {
     css: true,
   },
