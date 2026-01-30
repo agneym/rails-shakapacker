@@ -1,13 +1,11 @@
 {
-  "packageManager": "pnpm@11.0.0-dev.1005+sha512.91f84a392eea348ea4852a182912d2520273a4336f933b78cc44bc931eb999923c097e9433a9b355adc1f725725ea99082fc9f032a559df832632e764c92c798",
   "name": "app",
-  "private": true,
   "version": "0.1.0",
-  "browserslist": [
-    "defaults"
-  ],
+  "private": true,
   "scripts": {
-    "type:check": "tsgo"
+    "type:check": "tsgo",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "dependencies": {
     "@rspack/core": "^1.7.4",
@@ -28,6 +26,11 @@
     "@rspack/cli": "^1.7.4",
     "@rspack/plugin-react-refresh": "^1.6.0",
     "@types/node": "^25.1.0",
-    "@typescript/native-preview": "7.0.0-dev.20260130.1"
-  }
+    "@typescript/native-preview": "7.0.0-dev.20260130.1",
+    "oxfmt": "^0.27.0"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "packageManager": "pnpm@11.0.0-dev.1005+sha512.91f84a392eea348ea4852a182912d2520273a4336f933b78cc44bc931eb999923c097e9433a9b355adc1f725725ea99082fc9f032a559df832632e764c92c798"
 }
