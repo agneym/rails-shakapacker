@@ -23,6 +23,7 @@ pre-commit:
     - name: fmt
       run: pnpm run fmt {staged_files}
       glob: "*.{js,ts,jsx,tsx}"
+      stage_fixed: true
 
     - name: tsgo_check
       run: pnpm run type:check

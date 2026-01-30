@@ -13,3 +13,20 @@
 //
 // const images = require.context('./images', true)
 // const imagePath = (name) => images(name, true)
+import React from "react";
+import { createRoot } from "react-dom/client";
+
+const App = () => {
+  return <div>Hello, world!!</div>;
+};
+
+window.onload = () => {
+  const rootEl = document.createElement("div");
+  rootEl.id = "root";
+  document.body.appendChild(rootEl);
+  createRoot(rootEl).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+};
