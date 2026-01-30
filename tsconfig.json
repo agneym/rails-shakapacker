@@ -5,6 +5,7 @@
     "module": "preserve",
     "target": "esnext",
     "types": [],
+    "lib": ["dom", "dom.iterable", "esnext"],
 
     "noEmit": true,
 

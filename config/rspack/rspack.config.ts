@@ -108,6 +108,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["postcss-loader"],
+        type: "css/auto",
+      },
     ],
   },
   plugins: [
@@ -121,4 +126,7 @@ module.exports = {
       writeToFileEmit: true,
     }),
   ],
+  experiments: {
+    css: true,
+  },
 };

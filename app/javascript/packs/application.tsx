@@ -15,6 +15,7 @@
 // const imagePath = (name) => images(name, true)
 import React from "react";
 import { createRoot } from "react-dom/client";
+import "../styles.css";
 
 const App = () => {
   return <div>Hello, world!!</div>;
