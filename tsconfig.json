@@ -1,7 +1,7 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "rootDir": "./app/javascript",
+    "rootDir": ".",
     "module": "preserve",
     "target": "esnext",
     "types": [],
