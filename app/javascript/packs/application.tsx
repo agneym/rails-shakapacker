@@ -18,7 +18,7 @@ import { createRoot } from "react-dom/client";
 import "../styles.css";
 
 const App = () => {
-  return <div>Hello, world!!</div>;
+  return <div className="text-red-500">Hello, world!!</div>;
 };
 
 window.onload = () => {
