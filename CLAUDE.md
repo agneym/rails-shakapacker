@@ -42,6 +42,16 @@ bin/rails db:test:prepare
 - **Shakapacker config**: `config/shakapacker.yml` (dev server on port 3035)
 - **Output**: `public/packs/`
 
+### Tailwind CSS 4
+
+- Styles: `app/javascript/styles.css` via `@tailwindcss/postcss`
+
+### TanStack Router
+
+- Routes: `app/javascript/routes/` (file-based, auto code-splitting)
+- Add routes: create `routes/mypage.tsx` with `createFileRoute("/mypage")`
+- Rails catch-all in `config/routes.rb` enables client-side navigation
+
 ### Backend
 
 - Standard Rails MVC in `app/` (controllers, models, views)
