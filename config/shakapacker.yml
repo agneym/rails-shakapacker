@@ -111,7 +111,7 @@ default: &default
 
 development:
   <<: *default
-  compile: true
+  compile: false
   compiler_strategy: mtime
 
   # Disable content hashes in development for faster builds

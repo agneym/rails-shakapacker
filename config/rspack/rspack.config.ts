@@ -4,6 +4,7 @@ import type { Compilation } from "@rspack/core";
 import { readdirSync } from "node:fs";
 import { join, resolve, basename, extname } from "node:path";
 import { env, config as shakapackerConfig } from "shakapacker";
+import { tanstackRouter } from "@tanstack/router-plugin/rspack";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 const __dirname = resolve();
@@ -124,6 +125,13 @@ module.exports = {
       publicPath: shakapackerConfig.publicPathWithoutCDN,
       generate: generateManifest,
       writeToFileEmit: true,
+    }),
+    tanstackRouter({
+      target: "react",
+      autoCodeSplitting: true,
+      routesDirectory: join(shakapackerConfig.source_path, "routes"),
+      generatedRouteTree: join(shakapackerConfig.source_path, "routeTree.gen.ts"),
+      quoteStyle: "double",
     }),
   ],
   experiments: {

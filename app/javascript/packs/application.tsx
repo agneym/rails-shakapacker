@@ -1,33 +1,25 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
-
-// Uncomment to copy all static images under ./images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('./images', true)
-// const imagePath = (name) => images(name, true)
-import React from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "../routeTree.gen";
 import "../styles.css";
 
-const App = () => {
-  return <div className="text-red-500">Hello, world!!</div>;
-};
+const router = createRouter({ routeTree });
 
-window.onload = () => {
-  const rootEl = document.createElement("div");
-  rootEl.id = "root";
-  document.body.appendChild(rootEl);
-  createRoot(rootEl).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const rootElement = document.createElement("div");
+  rootElement.id = "root";
+  document.body.appendChild(rootElement);
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
   );
-};
+});
