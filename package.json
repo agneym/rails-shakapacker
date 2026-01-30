@@ -27,6 +27,7 @@
     "@rspack/plugin-react-refresh": "^1.6.0",
     "@types/node": "^25.1.0",
     "@typescript/native-preview": "7.0.0-dev.20260130.1",
+    "lefthook": "^2.0.16",
     "oxfmt": "^0.27.0"
   },
   "browserslist": [
