@@ -71,3 +71,28 @@ Managed by mise.toml:
 - Ruby 4.0.1
 - Node LTS
 - pnpm (latest)
+
+## Cursor Cloud specific instructions
+
+### Prerequisites
+
+- **mise** manages Ruby, Node, pnpm, and overmind versions (see `mise.toml`). Run `eval "$(mise activate bash)"` in every shell session or ensure mise is activated in `~/.bashrc`.
+- Ruby 4.0.1 builds from source and requires `libyaml-dev` for the psych extension. Install it with `sudo apt-get install -y libyaml-dev` before `mise install`.
+- The `pnpm install` warning about ignored build scripts (`@swc/core`, `core-js-pure`, `esbuild`) is harmless — prebuilt binaries are used.
+
+### Running the app
+
+- `pnpm start` (or `overmind start -f Procfile.dev`) starts both Rails (port 3000) and Shakapacker dev server (port 3035).
+- The database is SQLite3 (file-based in `storage/`); no external DB process is needed.
+- If `db/schema.rb` doesn't exist, run `bin/rails db:migrate` before running tests.
+
+### Testing notes
+
+- `bin/rails test` runs unit tests. There are currently 0 test files by default.
+- `bin/rails test:system` requires Chrome/Chromium. Playwright's Chromium can be installed via `npx playwright install chromium`.
+- Always run `bin/rails db:test:prepare` after migrations before running tests.
+
+### Lint/format
+
+- `bundle exec rubocop` — Ruby linting (all commands require `eval "$(mise activate bash)"` first).
+- `pnpm fmt:check` / `pnpm type:check` — frontend checks. See `Development Commands` section above for the full list.
